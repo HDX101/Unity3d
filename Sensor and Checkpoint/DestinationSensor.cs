@@ -38,20 +38,14 @@ public class DestinationSensor : MonoBehaviour
         objectCountInThisBox++;
         UpdateCountText();
         
-        // --- PERBAIKAN UTAMA DI SINI ---
-        // Langsung tentukan dan atur nilai final begitu objek terdeteksi.
         string finalDestination = boxType.ToString();
         objectData.FinalDestination_Unity = finalDestination;
-        objectData.JenisBarang = finalDestination; // Jenis Barang juga ditentukan oleh tujuan akhir
+        objectData.JenisBarang = finalDestination; 
         objectData.WaktuMasukBox = DateTime.Now;
-        // ---------------------------------
-
-        // Lakukan logging hanya jika mode tes aktif
         if (TestManager.Instance != null && TestManager.Instance.loggingMode == TestManager.LoggingMode.Aktif)
 {
     if (MasterLogger.Instance != null)
     {
-        // ... (logika hitung akurasi) ...
         string accuracyResult = "Error";
         if (objectData.JenisBarang == "Metal")
         {

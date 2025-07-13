@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TestManager : MonoBehaviour
 {
-    // Enum untuk pilihan mode logging
     public enum LoggingMode { Nonaktif, Aktif }
 
     public static TestManager Instance { get; private set; }

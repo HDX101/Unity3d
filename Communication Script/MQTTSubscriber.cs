@@ -48,13 +48,11 @@ public class MQTTSubscriber : MonoBehaviour
 
     void Update()
     {
-        // --- TAMBAHAN: Deteksi F5 untuk koneksi ulang ---
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Debug.Log("F5 DITEKAN: Memulai koneksi ulang MQTT Subscriber...");
             AttemptReconnect();
         }
-        // --- AKHIR TAMBAHAN ---
 
         if (Math.Abs(currentActiveInterval - refreshIntervalSeconds) > 0.001f)
         {
@@ -228,7 +226,7 @@ public class MQTTSubscriber : MonoBehaviour
         {
             client.Disconnect();
         }
-        client = null; // Pastikan client di-null kan
+        client = null; 
     }
 }
 

@@ -1,4 +1,3 @@
-// File: PneumaticActionSensor.cs (Perbaikan)
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -14,11 +13,6 @@ public class PneumaticActionSensor : MonoBehaviour
 
         var objectData = other.GetComponent<SortableObjectData>();
         if (objectData == null) return;
-
-        // Baris yang menyebabkan error telah dihapus.
-        // objectData.PneumaticSorted_PLC = plcInputManager.GetBoolState(pneumatic.extendControlAddress); 
-
-        // Baris ini tetap ada karena datanya masih kita pakai.
         objectData.PneumaticSorted_Unity = pneumatic.IsExtended; 
     }
 }

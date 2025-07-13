@@ -1,4 +1,3 @@
-// File: PLCSignalSender.cs (Dimodifikasi dengan Fungsi Reconnect F5)
 using UnityEngine;
 using System;
 using System.Text;
@@ -31,32 +30,22 @@ public class PLCSignalSender : MonoBehaviour
         await ConnectToMqttBroker();
     }
 
-    // --- TAMBAHAN: Method Update untuk deteksi F5 ---
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
             Debug.Log("F5 DITEKAN: Memulai koneksi ulang PLCSignalSender...");
-            // Panggil method async tanpa menunggunya di Update
             _ = AttemptReconnect();
         }
     }
-    // --- AKHIR TAMBAHAN ---
-
-    // --- TAMBAHAN: Metode untuk mencoba koneksi ulang ---
     public async Task AttemptReconnect()
     {
-        if (isConnecting) return; // Hindari rekoneksi ganda
         
         Debug.Log("PLCSignalSender: Mencoba melakukan koneksi ulang...");
-        // 1. Putuskan koneksi lama
         DisconnectFromMqttBroker();
-        // 2. Beri jeda singkat agar semua resource dilepaskan
-        await Task.Delay(500); // Tunggu 0.5 detik
-        // 3. Hubungkan kembali
+        await Task.Delay(500);
         await ConnectToMqttBroker();
     }
-    // --- AKHIR TAMBAHAN ---
 
     private async Task ConnectToMqttBroker()
     {
@@ -122,8 +111,7 @@ public class PLCSignalSender : MonoBehaviour
                                  Encoding.UTF8.GetBytes(payload), 
                                  MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, 
                                  false); 
-            // Debug.Log($"PLCSignalSender: Perintah dikirim ke topik '{commandTopic}': {payload}"); // Opsional: bisa di-uncomment jika perlu
-        }
+            }
         catch (Exception e)
         {
             Debug.LogError($"PLCSignalSender: Gagal mengirim perintah: {e.ToString()}");

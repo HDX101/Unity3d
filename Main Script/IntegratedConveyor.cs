@@ -85,12 +85,10 @@ public class IntegratedConveyor : MonoBehaviour
         long scriptActionTimestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
         long nodeRedTimestamp = plcInputManager.GetLongValue("timestamp_origin", 0);
         
-        // --- PERBAIKAN: Gunakan 'conveyorEnableAddress' bukan 'extendControlAddress' ---
         PLCDataPacket? packet = plcInputManager.GetPacket(conveyorEnableAddress);
 
         if (nodeRedTimestamp > 0 && packet.HasValue && MasterLogger.Instance != null)
         {
-            // --- PERBAIKAN: Gunakan 'conveyorEnableAddress' di sini juga ---
             MasterLogger.Instance.LogLatency(conveyorEnableAddress, nodeRedTimestamp, packet.Value.Timestamp, scriptActionTimestamp);
         }
     }

@@ -36,12 +36,10 @@ public class PilotLampIndicator : MonoBehaviour
             long scriptActionTimestamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeMilliseconds();
             long nodeRedTimestamp = plcInputManager.GetLongValue("timestamp_origin", 0);
             
-            // --- PERBAIKAN: Gunakan variabel 'statusAddress' yang benar ---
             PLCDataPacket? packet = plcInputManager.GetPacket(statusAddress);
 
             if (nodeRedTimestamp > 0 && packet.HasValue && MasterLogger.Instance != null)
             {
-                // --- PERBAIKAN: Gunakan 'statusAddress' di sini juga ---
                 MasterLogger.Instance.LogLatency(statusAddress, nodeRedTimestamp, packet.Value.Timestamp, scriptActionTimestamp);
             }
             

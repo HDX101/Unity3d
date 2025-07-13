@@ -59,8 +59,6 @@ public class MaterialChanger : MonoBehaviour
         if (objectData != null)
         {
             objectData.MaterialChanged_Unity = true;
-            // --- BARIS INI DIHAPUS ---
-            // objectData.WaktuSortir = System.DateTime.Now; 
         }
     }
 }

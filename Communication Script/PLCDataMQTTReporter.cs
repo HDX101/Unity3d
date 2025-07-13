@@ -114,8 +114,6 @@ public class PLCDataMQTTReporter : MonoBehaviour
         sb.Append("}");
         return sb.ToString();
     }
-    
-    // === BAGIAN INI TELAH DIPERBAIKI DAN DIISI KEMBALI ===
     private string EscapeJsonString(string str)
     {
         if (string.IsNullOrEmpty(str)) return "";
@@ -147,8 +145,6 @@ public class PLCDataMQTTReporter : MonoBehaviour
         }
         return sb.ToString();
     }
-    // ======================================================
-
     void OnApplicationQuit() { DisconnectFromMqttBroker(); }
     void OnDestroy() { DisconnectFromMqttBroker(); }
     private void DisconnectFromMqttBroker()
